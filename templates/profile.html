@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Boardify{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="{{ url_for('static', filename='BoardifyLogo.png') }}" alt="Boardify" style="height: 40px; margin-right: 10px;">
+                <span>Boardify</span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <a href="/" class="navbar-item">Boards</a>
+            <a href="/profile" class="navbar-item active">Profile</a>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="profile-content">
+        <div class="profile-header">
+            <h2 id="profileUsername">My Profile</h2>
+        </div>
+        
+        <div class="profile-grid">
+            <div class="profile-section">
+                <h3>My Tasks</h3>
+                <div id="tasksList" class="tasks-list">
+                    <!-- Tasks will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h3>Calendar</h3>
+                <div class="calendar-controls">
+                    <button id="prevMonth" class="btn btn-icon">◀</button>
+                    <h4 id="currentMonth"></h4>
+                    <button id="nextMonth" class="btn btn-icon">▶</button>
+                </div>
+                <div id="calendar" class="calendar">
+                    <!-- Calendar will be rendered here -->
+                </div>
+                <div id="calendarTasks" class="calendar-tasks">
+                    <!-- Selected day tasks will show here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

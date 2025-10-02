@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Boardify{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='BoardifyLogo.png') }}" alt="Boardify" style="height: 40px; margin-right: 10px;">
+            <h1>Boardify</h1>
+        </div>
+        <div class="navbar-menu">
+            <a href="/" class="navbar-item active">Boards</a>
+            <a href="/profile" class="navbar-item">Profile</a>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="dashboard-content">
+        <div class="dashboard-header">
+            <h2>Your Boards</h2>
+            <button id="createBoardBtn" class="btn btn-primary">+ Create Board</button>
+        </div>
+        
+        <div id="boardsGrid" class="boards-grid">
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);">
+                <p>Loading boards...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Board Modal -->
+<div id="createBoardModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Create New Board</h3>
+            <span class="close">&times;</span>
+        </div>
+        <form id="createBoardForm">
+            <div class="form-group">
+                <label for="boardTitle">Board Title</label>
+                <input type="text" id="boardTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="boardDescription">Description (optional)</label>
+                <textarea id="boardDescription" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

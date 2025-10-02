@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Board - Boardify{% endblock %}
+
+{% block content %}
+<div class="board-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="{{ url_for('static', filename='BoardifyLogo.png') }}" alt="Boardify" style="height: 40px; margin-right: 10px;">
+                <span>Boardify</span>
+            </a>
+        </div>
+        <div class="navbar-center">
+            <h2 id="boardTitle">Loading...</h2>
+        </div>
+        <div class="navbar-menu">
+            <button id="deleteBoardBtn" class="btn btn-danger">Delete Board</button>
+            <button id="inviteMemberBtn" class="btn btn-secondary">+ Invite</button>
+            <button id="showMembersBtn" class="btn btn-secondary">Members</button>
+            <a href="/" class="btn btn-secondary">Back to Boards</a>
+        </div>
+    </nav>
+    
+    <div class="board-content">
+        <div class="lists-container" id="listsContainer">
+            <!-- Lists will be loaded here -->
+        </div>
+        
+        <div class="add-list-container">
+            <button id="addListBtn" class="btn btn-add-list">+ Add List</button>
+            <div id="addListForm" class="add-list-form" style="display: none;">
+                <input type="text" id="newListTitle" placeholder="Enter list title..." />
+                <div class="add-list-actions">
+                    <button id="saveListBtn" class="btn btn-primary">Add List</button>
+                    <button id="cancelListBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="activity-log">
+        <div class="activity-header">
+            <h3>Activity Log</h3>
+            <button id="toggleActivityBtn" class="btn-icon">▼</button>
+        </div>
+        <div id="activityList" class="activity-list">
+            <!-- Activities will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<!-- Card Detail Modal -->
+<div id="cardModal" class="modal">
+    <div class="modal-content modal-large">
+        <div class="modal-header">
+            <input type="text" id="cardTitle" class="card-title-input" />
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="card-detail-main">
+                <div class="card-section">
+                    <h4>Description</h4>
+                    <textarea id="cardDescription" rows="4" placeholder="Add a description..."></textarea>
+                </div>
+                
+                <div class="card-section">
+                    <h4>Checklist</h4>
+                    <div id="checklistItems"></div>
+                    <input type="text" id="newChecklistItem" placeholder="Add an item..." />
+                    <button id="addChecklistBtn" class="btn btn-sm btn-secondary">Add</button>
+                </div>
+                
+                <div class="card-section">
+                    <h4>Attachments</h4>
+                    <div id="attachmentsList"></div>
+                    <input type="file" id="fileInput" style="display: none;" />
+                    <button id="uploadFileBtn" class="btn btn-sm btn-secondary">Upload File</button>
+                </div>
+            </div>
+            
+            <div class="card-detail-sidebar">
+                <div class="card-section">
+                    <h4>Due Date</h4>
+                    <input type="datetime-local" id="cardDueDate" />
+                </div>
+                
+                <div class="card-section">
+                    <h4>Assigned To</h4>
+                    <div id="assignedUsers"></div>
+                    <input type="text" id="searchUsers" placeholder="Search users..." />
+                    <div id="userSearchResults"></div>
+                </div>
+                
+                <div class="card-section">
+                    <h4>Actions</h4>
+                    <button id="deleteCardBtn" class="btn btn-danger btn-block">Delete Card</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="saveCardBtn" class="btn btn-primary">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Invite Member Modal -->
+<div id="inviteMemberModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Invite Member</h3>
+            <span class="close">&times;</span>
+        </div>
+        <form id="inviteMemberForm">
+            <div class="form-group">
+                <label for="inviteUsername">Username</label>
+                <input type="text" id="inviteUsername" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Invite</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Members Modal -->
+<div id="membersModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Board Members</h3>
+            <span class="close">&times;</span>
+        </div>
+        <div id="membersList" class="members-list">
+            <!-- Members will be loaded here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/board.js') }}"></script>
+{% endblock %}
