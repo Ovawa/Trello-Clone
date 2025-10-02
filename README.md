@@ -1,4 +1,4 @@
-# 🎯 Boardify - Trello Clone
+#Boardify - Trello Clone
 
 A full-featured project management tool built with Flask and SQLAlchemy, inspired by Trello.
 
