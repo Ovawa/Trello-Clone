@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: boardify
+Version: 0.1
+Requires-Dist: Flask==3.0.0
+Requires-Dist: Flask-SQLAlchemy==3.1.1
+Requires-Dist: Werkzeug==3.0.1
+Requires-Dist: SQLAlchemy==2.0.36
+Requires-Dist: pytest==8.1.1
+Requires-Dist: pytest-cov==4.1.0
+Requires-Dist: pytest-mock==3.12.0
+Requires-Dist: coverage==7.4.3
+Dynamic: requires-dist
